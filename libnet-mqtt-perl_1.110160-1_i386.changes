@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Sun, 16 Jan 2011 11:08:12 +0000
+Source: libnet-mqtt-perl
+Binary: libnet-mqtt-perl
+Architecture: source all
+Version: 1.110160-1
+Distribution: unstable
+Urgency: low
+Maintainer: Mark Hindess <soft-debian@temporalanomaly.com>
+Changed-By: Mark Hindess <soft-debian@temporalanomaly.com>
+Description: 
+ libnet-mqtt-perl - Net::MQTT Perl modules for MQTT Protocol (http://mqtt.org/)
+Changes: 
+ libnet-mqtt-perl (1.110160-1) unstable; urgency=low
+ .
+   * Initial release.
+Checksums-Sha1: 
+ 04a00da2cf343455027f6c3549f4735c248d1235 616 libnet-mqtt-perl_1.110160-1.dsc
+ 563a242dd353cd810fb5b08f0dc0e9ce83671a47 25520 libnet-mqtt-perl_1.110160-1.tar.gz
+ f0d121f359e47908baaf07ffd7f81d676fb1d1b9 60304 libnet-mqtt-perl_1.110160-1_all.deb
+Checksums-Sha256: 
+ f4fa1d389b9fb72e220bb19658cfab45157f79ea0ece22f9ebca698a17dfcb16 616 libnet-mqtt-perl_1.110160-1.dsc
+ b88945c46034787f78c1f215140e8be914e28a586eb6b2cc4062a9b868e0e6ca 25520 libnet-mqtt-perl_1.110160-1.tar.gz
+ 01a903533d2386a4315402a652b79a9a8f030de62c2b542135ea6f9ab1986da4 60304 libnet-mqtt-perl_1.110160-1_all.deb
+Files: 
+ c637bd8c1e9854d28453117f1d055131 616 perl optional libnet-mqtt-perl_1.110160-1.dsc
+ eac1d62810ea2763014e6921305ab6a1 25520 perl optional libnet-mqtt-perl_1.110160-1.tar.gz
+ ed6caf995cd55f936a6d33bfdae727b7 60304 perl optional libnet-mqtt-perl_1.110160-1_all.deb
