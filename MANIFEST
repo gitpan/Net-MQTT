@@ -34,10 +34,6 @@ lib/Net/MQTT/Message/SubAck.pm
 lib/Net/MQTT/Message/Subscribe.pm
 lib/Net/MQTT/Message/UnsubAck.pm
 lib/Net/MQTT/Message/Unsubscribe.pm
-libnet-mqtt-perl_1.110160-1.dsc
-libnet-mqtt-perl_1.110160-1.tar.gz
-libnet-mqtt-perl_1.110160-1_all.deb
-libnet-mqtt-perl_1.110160-1_i386.changes
 t/01-message.t
 t/01-topic.t
 t/02-messages.t

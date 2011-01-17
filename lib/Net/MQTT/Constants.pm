@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Constants;
 BEGIN {
-  $Net::MQTT::Constants::VERSION = '1.110160';
+  $Net::MQTT::Constants::VERSION = '1.110170';
 }
 
 # ABSTRACT: Module to export constants for MQTT protocol
@@ -117,7 +117,7 @@ sub decode_string {
 
 
 sub encode_string {
-  pack "n/a", $_[0];
+  pack "n/a*", $_[0];
 }
 
 
@@ -186,7 +186,7 @@ Net::MQTT::Constants - Module to export constants for MQTT protocol
 
 =head1 VERSION
 
-version 1.110160
+version 1.110170
 
 =head1 SYNOPSIS
 

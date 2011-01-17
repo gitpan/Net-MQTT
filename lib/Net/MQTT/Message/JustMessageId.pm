@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::JustMessageId;
 BEGIN {
-  $Net::MQTT::Message::JustMessageId::VERSION = '1.110160';
+  $Net::MQTT::Message::JustMessageId::VERSION = '1.110170';
 }
 
 # ABSTRACT: Perl module for an MQTT message w/message id only payload
@@ -40,7 +40,7 @@ Net::MQTT::Message::JustMessageId - Perl module for an MQTT message w/message id
 
 =head1 VERSION
 
-version 1.110160
+version 1.110170
 
 =head1 SYNOPSIS
 

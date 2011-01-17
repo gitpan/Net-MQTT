@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::ConnAck;
 BEGIN {
-  $Net::MQTT::Message::ConnAck::VERSION = '1.110160';
+  $Net::MQTT::Message::ConnAck::VERSION = '1.110170';
 }
 
 # ABSTRACT: Perl module to represent an MQTT ConnAck message
@@ -50,7 +50,7 @@ Net::MQTT::Message::ConnAck - Perl module to represent an MQTT ConnAck message
 
 =head1 VERSION
 
-version 1.110160
+version 1.110170
 
 =head1 SYNOPSIS
 

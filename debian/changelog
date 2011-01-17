@@ -1,5 +1,11 @@
+libnet-mqtt-perl (1.110170-1) unstable; urgency=low
+
+  * Fix pack syntax error.  Thanks to CPAN Testers.
+
+ -- Mark Hindess <soft-debian@temporalanomaly.com>  Mon, 17 Jan 2011 18:35:37 +0000
+
 libnet-mqtt-perl (1.110160-1) unstable; urgency=low
 
   * Initial release.
 
- -- Mark Hindess <soft-debian@temporalanomaly.com>  Sun, 16 Jan 2011 11:08:12 +0000
+ -- Mark Hindess <soft-debian@temporalanomaly.com>  Sun, 16 Jan 2011 13:20:17 +0000

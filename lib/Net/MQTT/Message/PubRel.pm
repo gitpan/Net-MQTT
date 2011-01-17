@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::PubRel;
 BEGIN {
-  $Net::MQTT::Message::PubRel::VERSION = '1.110160';
+  $Net::MQTT::Message::PubRel::VERSION = '1.110170';
 }
 
 # ABSTRACT: Perl module to represent an MQTT PubRel message
@@ -31,7 +31,7 @@ Net::MQTT::Message::PubRel - Perl module to represent an MQTT PubRel message
 
 =head1 VERSION
 
-version 1.110160
+version 1.110170
 
 =head1 SYNOPSIS
 

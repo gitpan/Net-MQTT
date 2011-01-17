@@ -190,7 +190,7 @@ net-mqtt-trace - Perl script for decoding MQTT messages from IP packets
 
 =head1 VERSION
 
-version 1.110160
+version 1.110170
 
 =head1 SYNOPSIS
 
