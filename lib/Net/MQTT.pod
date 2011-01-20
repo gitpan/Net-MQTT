@@ -16,7 +16,7 @@ Net::MQTT - Perl modules for MQTT Protocol (http://mqtt.org/)
 
 =head1 VERSION
 
-version 1.110170
+version 1.110200
 
 =head1 SYNOPSIS
 

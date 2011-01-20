@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::Subscribe;
 BEGIN {
-  $Net::MQTT::Message::Subscribe::VERSION = '1.110170';
+  $Net::MQTT::Message::Subscribe::VERSION = '1.110200';
 }
 
 # ABSTRACT: Perl module to represent an MQTT Subscribe message
@@ -66,7 +66,7 @@ Net::MQTT::Message::Subscribe - Perl module to represent an MQTT Subscribe messa
 
 =head1 VERSION
 
-version 1.110170
+version 1.110200
 
 =head1 SYNOPSIS
 

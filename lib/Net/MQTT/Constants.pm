@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Constants;
 BEGIN {
-  $Net::MQTT::Constants::VERSION = '1.110170';
+  $Net::MQTT::Constants::VERSION = '1.110200';
 }
 
 # ABSTRACT: Module to export constants for MQTT protocol
@@ -186,7 +186,7 @@ Net::MQTT::Constants - Module to export constants for MQTT protocol
 
 =head1 VERSION
 
-version 1.110170
+version 1.110200
 
 =head1 SYNOPSIS
 

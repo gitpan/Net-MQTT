@@ -18,11 +18,15 @@ use Pod::Usage;
 my $help;
 my $man;
 my $verbose = 0;
+my $host = '127.0.0.1';
+my $port = 1883;
 my $count;
 my $keep_alive_timer = 120;
 GetOptions('help|?' => \$help,
            'man' => \$man,
            'verbose+' => \$verbose,
+           'host=s' => \$host,
+           'port=i' => \$port,
            'count=i' => \$count,
            'one|1' => sub { $count = 1 },
            'keepalive=i' => \$keep_alive_timer) or pod2usage(2);
@@ -31,7 +35,7 @@ pod2usage(-exitstatus => 0, -verbose => 2) if $man;
 pod2usage(2) unless (@ARGV); # need a topic
 
 my $socket =
-  IO::Socket::INET->new(PeerAddr =>'127.0.0.1:1883',
+  IO::Socket::INET->new(PeerAddr => $host.':'.$port,
                         Timeout => $keep_alive_timer,
                        ) or die "Socket connect failed: $!\n";
 
@@ -113,7 +117,7 @@ net-mqtt-sub - Perl script for subscribing to an MQTT topic
 
 =head1 VERSION
 
-version 1.110170
+version 1.110200
 
 =head1 SYNOPSIS
 
@@ -135,6 +139,14 @@ Print a brief help message.
 =item B<-man>
 
 Print the manual page.
+
+=item B<-host>
+
+The host running the MQTT service.  The default is C<127.0.0.1>.
+
+=item B<-port>
+
+The port of the running MQTT service.  The default is 1883.
 
 =item B<-verbose>
 
