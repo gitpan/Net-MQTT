@@ -27,6 +27,7 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Net::MQTT',
   'PREREQ_PM' => {
+    'Carp' => '0',
     'Getopt::Long' => '0',
     'IO::Select' => '0',
     'IO::Socket::INET' => '0',
@@ -35,7 +36,7 @@ my %WriteMakefileArgs = (
     'Pod::Usage' => '0',
     'Time::HiRes' => '0'
   },
-  'VERSION' => '1.110200',
+  'VERSION' => '1.110390',
   'test' => {
     'TESTS' => 't/*.t'
   }

@@ -21,6 +21,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : 0,
             "Getopt::Long" : 0,
             "IO::Select" : 0,
             "IO::Socket::INET" : 0,
@@ -48,6 +49,6 @@
          "web" : "http://github.com/beanz/net-mqtt-perl"
       }
    },
-   "version" : "1.110200"
+   "version" : "1.110390"
 }
 

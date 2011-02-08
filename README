@@ -2,7 +2,7 @@ NAME
     Net::MQTT::Message - Perl module to represent MQTT messages
 
 VERSION
-    version 1.110200
+    version 1.110390
 
 SYNOPSIS
       use Net::MQTT::Constants;

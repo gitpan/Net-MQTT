@@ -37,6 +37,7 @@ lib/Net/MQTT/Message/Unsubscribe.pm
 t/01-message.t
 t/01-topic.t
 t/02-messages.t
+t/03-errors.t
 t/author-critic.t
 t/msg/01-connect.txt
 t/msg/02-connack.txt

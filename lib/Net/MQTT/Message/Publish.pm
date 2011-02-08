@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::Publish;
 BEGIN {
-  $Net::MQTT::Message::Publish::VERSION = '1.110200';
+  $Net::MQTT::Message::Publish::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent an MQTT Publish message
@@ -35,11 +35,11 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{topic} = decode_string($self->{remaining});
-  if ($self->qos) {
-    $self->{message_id} = decode_short($self->{remaining});
-  }
-  $self->{message} = $self->{remaining};
+  my $offset = 0;
+  $self->{topic} = decode_string($self->{remaining}, \$offset);
+  $self->{message_id} = decode_short($self->{remaining}, \$offset)
+    if ($self->qos);
+  $self->{message} = substr $self->{remaining}, $offset;
   $self->{remaining} = '';
 }
 
@@ -64,7 +64,7 @@ Net::MQTT::Message::Publish - Perl module to represent an MQTT Publish message
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

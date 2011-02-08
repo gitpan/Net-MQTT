@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::ConnAck;
 BEGIN {
-  $Net::MQTT::Message::ConnAck::VERSION = '1.110200';
+  $Net::MQTT::Message::ConnAck::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent an MQTT ConnAck message
@@ -29,8 +29,10 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{connack_reserved} = decode_byte($self->{remaining});
-  $self->{return_code} = decode_byte($self->{remaining});
+  my $offset = 0;
+  $self->{connack_reserved} = decode_byte($self->{remaining}, \$offset);
+  $self->{return_code} = decode_byte($self->{remaining}, \$offset);
+  substr $self->{remaining}, 0, $offset, '';
 }
 
 sub _remaining_bytes {
@@ -50,7 +52,7 @@ Net::MQTT::Message::ConnAck - Perl module to represent an MQTT ConnAck message
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

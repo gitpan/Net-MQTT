@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::Subscribe;
 BEGIN {
-  $Net::MQTT::Message::Subscribe::VERSION = '1.110200';
+  $Net::MQTT::Message::Subscribe::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent an MQTT Subscribe message
@@ -37,11 +37,13 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{message_id} = decode_short($self->{remaining});
-  while (length $self->{remaining}) {
-    push @{$self->{topics}}, [ decode_string($self->{remaining}),
-                               decode_byte($self->{remaining}) ];
+  my $offset = 0;
+  $self->{message_id} = decode_short($self->{remaining}, \$offset);
+  while ($offset < length $self->{remaining}) {
+    push @{$self->{topics}}, [ decode_string($self->{remaining}, \$offset),
+                               decode_byte($self->{remaining}, \$offset) ];
   }
+  substr $self->{remaining}, 0, $offset, '';
 }
 
 sub _remaining_bytes {
@@ -66,7 +68,7 @@ Net::MQTT::Message::Subscribe - Perl module to represent an MQTT Subscribe messa
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

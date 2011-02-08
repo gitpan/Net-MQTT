@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::JustMessageId;
 BEGIN {
-  $Net::MQTT::Message::JustMessageId::VERSION = '1.110200';
+  $Net::MQTT::Message::JustMessageId::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module for an MQTT message w/message id only payload
@@ -21,7 +21,9 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{message_id} = decode_short($self->{remaining});
+  my $offset = 0;
+  $self->{message_id} = decode_short($self->{remaining}, \$offset);
+  substr $self->{remaining}, 0, $offset, '';
 }
 
 sub _remaining_bytes {
@@ -40,7 +42,7 @@ Net::MQTT::Message::JustMessageId - Perl module for an MQTT message w/message id
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

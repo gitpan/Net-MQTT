@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::Unsubscribe;
 BEGIN {
-  $Net::MQTT::Message::Unsubscribe::VERSION = '1.110200';
+  $Net::MQTT::Message::Unsubscribe::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent an MQTT Unsubscribe message
@@ -35,10 +35,12 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{message_id} = decode_short($self->{remaining});
-  while (length $self->{remaining}) {
-    push @{$self->{topics}}, decode_string($self->{remaining});
+  my $offset = 0;
+  $self->{message_id} = decode_short($self->{remaining}, \$offset);
+  while ($offset < length $self->{remaining}) {
+    push @{$self->{topics}}, decode_string($self->{remaining}, \$offset);
   }
+  substr $self->{remaining}, 0, $offset, '';
 }
 
 sub _remaining_bytes {
@@ -61,7 +63,7 @@ Net::MQTT::Message::Unsubscribe - Perl module to represent an MQTT Unsubscribe m
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

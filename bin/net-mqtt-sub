@@ -117,7 +117,7 @@ net-mqtt-sub - Perl script for subscribing to an MQTT topic
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 
@@ -184,6 +184,11 @@ Short for B<-count 1>.  Read one message and exit.
 =head1 SEE ALSO
 
 Net::MQTT::Message(3)
+
+=head1 DISCLAIMER
+
+This is B<not> official IBM code.  I work for IBM but I'm writing this
+in my spare time (with permission) for fun.
 
 =head1 AUTHOR
 

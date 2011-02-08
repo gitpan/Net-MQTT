@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message;
 BEGIN {
-  $Net::MQTT::Message::VERSION = '1.110200';
+  $Net::MQTT::Message::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent MQTT messages
@@ -37,17 +37,22 @@ sub new_from_bytes {
   my ($pkg, $bytes, $splice) = @_;
   my %p;
   return if (length $bytes < 2);
-  my $b = decode_byte($bytes);
+  my $offset = 0;
+  my $b = decode_byte($bytes, \$offset);
   $p{message_type} = ($b&0xf0) >> 4;
   $p{dup} = ($b&0x8)>>3;
   $p{qos} = ($b&0x6)>>1;
   $p{retain} = ($b&0x1);
-  my ($length, $remaining_length_length) = decode_remaining_length($bytes);
-  if (length $bytes < $length) {
+  my $length;
+  eval {
+    $length = decode_remaining_length($bytes, \$offset);
+  };
+  return if ($@);
+  if (length $bytes < $offset+$length) {
     return
   }
-  substr $_[1], 0, 1+$remaining_length_length+$length, '' if ($splice);
-  $p{remaining} = substr $bytes, 0, $length;
+  substr $_[1], 0, $offset+$length, '' if ($splice);
+  $p{remaining} = substr $bytes, $offset, $length;
   my $self = $pkg->new(%p);
   $self->_parse_remaining();
   $self;
@@ -125,7 +130,7 @@ Net::MQTT::Message - Perl module to represent MQTT messages
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 

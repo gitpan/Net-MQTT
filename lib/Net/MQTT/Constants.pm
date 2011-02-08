@@ -2,11 +2,13 @@ use strict;
 use warnings;
 package Net::MQTT::Constants;
 BEGIN {
-  $Net::MQTT::Constants::VERSION = '1.110200';
+  $Net::MQTT::Constants::VERSION = '1.110390';
 }
 
 # ABSTRACT: Module to export constants for MQTT protocol
 
+
+use Carp qw/croak/;
 
 my %constants =
   (
@@ -60,17 +62,16 @@ sub import {
 
 
 sub decode_remaining_length {
+  my ($data, $offset) = @_;
   my $multiplier = 1;
   my $v = 0;
   my $d;
-  my $len = 0;
   do {
-    $len++;
-    $d = decode_byte($_[0]);
+    $d = decode_byte($data, $offset);
     $v += ($d&0x7f) * $multiplier;
     $multiplier *= 128;
   } while ($d&0x80);
-  ($v, $len)
+  $v
 }
 
 
@@ -91,7 +92,11 @@ sub encode_remaining_length {
 
 
 sub decode_byte {
-  unpack 'C', substr $_[0], 0, 1, '';
+  my ($data, $offset) = @_;
+  croak 'decode_byte: insufficient data' unless (length $data >= $$offset+1);
+  my $res = unpack 'C', substr $data, $$offset, 1;
+  $$offset++;
+  $res
 }
 
 
@@ -101,7 +106,11 @@ sub encode_byte {
 
 
 sub decode_short {
-  unpack 'n', substr $_[0], 0, 2, '';
+  my ($data, $offset) = @_;
+  croak 'decode_short: insufficient data' unless (length $data >= $$offset+2);
+  my $res = unpack 'n', substr $data, $$offset, 2;
+  $$offset += 2;
+  $res;
 }
 
 
@@ -111,8 +120,13 @@ sub encode_short {
 
 
 sub decode_string {
-  my $len = decode_short($_[0]);
-  substr $_[0], 0, $len, '';
+  my ($data, $offset) = @_;
+  my $len = decode_short($data, $offset);
+  croak 'decode_string: insufficient data'
+    unless (length $data >= $$offset+$len);
+  my $res = substr $data, $$offset, $len;
+  $$offset += $len;
+  $res;
 }
 
 
@@ -166,11 +180,12 @@ sub connect_return_code_string {
 sub topic_to_regexp {
   my $topic = shift;
   my $c;
-  $c += ($topic =~ s!/\+!/[^/]*!g);
-  $c += ($topic =~ s!/#$!.*!);
-  $c += ($topic =~ s!^\+/![^/]*/!g);
-  $c += ($topic =~ s!^\+$![^/]*!g);
-  $c += ($topic =~ s!^#$!.*!);
+  $topic = quotemeta $topic;
+  $c += ($topic =~ s!\\/\\\+!\\/[^/]*!g);
+  $c += ($topic =~ s!\\/\\#$!.*!);
+  $c += ($topic =~ s!^\\\+\\/![^/]*\\/!g);
+  $c += ($topic =~ s!^\\\+$![^/]*!g);
+  $c += ($topic =~ s!^\\#$!.*!);
   unless ($c) {
     return;
   }
@@ -186,7 +201,7 @@ Net::MQTT::Constants - Module to export constants for MQTT protocol
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 
@@ -198,38 +213,43 @@ Module to export constants for MQTT protocol.
 
 =head1 C<FUNCTIONS>
 
-=head2 C<decode_remaining_length( $data )>
+=head2 C<decode_remaining_length( $data, \$offset )>
 
-Calculates the C<remaining length> from the bytes in C<$data> removing
-any bytes that make up the field.
+Calculates the C<remaining length> from the bytes in C<$data> starting
+at the offset read from the scalar reference.  The offset reference is
+subsequently incremented by the number of bytes processed.
 
 =head2 C<encode_remaining_length( $length )>
 
 Calculates the C<remaining length> bytes from the length, C<$length>,
 and returns the packed bytes as a string.
 
-=head2 C<decode_byte( $data )>
+=head2 C<decode_byte( $data, \$offset )>
 
-Returns a byte by unpacking it (and removing it) from the start of
-C<$data>.
+Returns a byte by unpacking it from C<$data> starting at the offset
+read from the scalar reference.  The offset reference is subsequently
+incremented by the number of bytes processed.
 
 =head2 C<encode_byte( $byte )>
 
 Returns a packed byte.
 
-=head2 C<decode_short( $data )>
+=head2 C<decode_short( $data, \$offset )>
 
-Returns a short (two bytes) by unpacking it (and removing it) from
-the start of C<$data>.
+Returns a short (two bytes) by unpacking it from C<$data> starting at
+the offset read from the scalar reference.  The offset reference is
+subsequently incremented by the number of bytes processed.
 
 =head2 C<encode_short( $short )>
 
 Returns a packed short (two bytes).
 
-=head2 C<decode_string( $data )>
+=head2 C<decode_string( $data, \$offset )>
 
 Returns a string (short length followed by length bytes) by unpacking
-it (and removing it) from the start of C<$data>.
+it from C<$data> starting at the offset read from the scalar
+reference.  The offset reference is subsequently incremented by the
+number of bytes processed.
 
 =head2 C<encode_string( $string )>
 

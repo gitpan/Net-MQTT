@@ -15,6 +15,7 @@ meta-spec:
   version: 1.4
 name: Net-MQTT
 requires:
+  Carp: 0
   Getopt::Long: 0
   IO::Select: 0
   IO::Socket::INET: 0
@@ -25,4 +26,4 @@ requires:
 resources:
   bugtracker: http://github.com/beanz/net-mqtt-perl/issues
   repository: git://github.com/beanz/net-mqtt-perl.git
-version: 1.110200
+version: 1.110390

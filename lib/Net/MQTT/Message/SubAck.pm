@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message::SubAck;
 BEGIN {
-  $Net::MQTT::Message::SubAck::VERSION = '1.110200';
+  $Net::MQTT::Message::SubAck::VERSION = '1.110390';
 }
 
 # ABSTRACT: Perl module to represent an MQTT SubAck message
@@ -30,10 +30,12 @@ sub _remaining_string {
 
 sub _parse_remaining {
   my $self = shift;
-  $self->{message_id} = decode_short($self->{remaining});
-  while (length $self->{remaining}) {
-    push @{$self->{qos_levels}}, decode_byte($self->{remaining})&0x3;
+  my $offset = 0;
+  $self->{message_id} = decode_short($self->{remaining}, \$offset);
+  while ($offset < length $self->{remaining}) {
+    push @{$self->{qos_levels}}, decode_byte($self->{remaining}, \$offset)&0x3;
   }
+  substr $self->{remaining}, 0, $offset, '';
 }
 
 sub _remaining_bytes {
@@ -57,7 +59,7 @@ Net::MQTT::Message::SubAck - Perl module to represent an MQTT SubAck message
 
 =head1 VERSION
 
-version 1.110200
+version 1.110390
 
 =head1 SYNOPSIS
 
