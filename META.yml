@@ -26,4 +26,4 @@ requires:
 resources:
   bugtracker: http://github.com/beanz/net-mqtt-perl/issues
   repository: git://github.com/beanz/net-mqtt-perl.git
-version: 1.110390
+version: 1.110400

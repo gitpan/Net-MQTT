@@ -36,7 +36,7 @@ my %WriteMakefileArgs = (
     'Pod::Usage' => '0',
     'Time::HiRes' => '0'
   },
-  'VERSION' => '1.110390',
+  'VERSION' => '1.110400',
   'test' => {
     'TESTS' => 't/*.t'
   }
