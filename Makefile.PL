@@ -21,8 +21,8 @@ my %WriteMakefileArgs = (
   'DISTNAME' => 'Net-MQTT',
   'EXE_FILES' => [
     'bin/net-mqtt-pub',
-    'bin/net-mqtt-sub',
-    'bin/net-mqtt-trace'
+    'bin/net-mqtt-trace',
+    'bin/net-mqtt-sub'
   ],
   'LICENSE' => 'perl',
   'NAME' => 'Net::MQTT',
@@ -36,7 +36,7 @@ my %WriteMakefileArgs = (
     'Pod::Usage' => '0',
     'Time::HiRes' => '0'
   },
-  'VERSION' => '1.110400',
+  'VERSION' => '1.112320',
   'test' => {
     'TESTS' => 't/*.t'
   }

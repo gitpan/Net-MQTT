@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Net::MQTT::Message;
 BEGIN {
-  $Net::MQTT::Message::VERSION = '1.110400';
+  $Net::MQTT::Message::VERSION = '1.112320';
 }
 
 # ABSTRACT: Perl module to represent MQTT messages
@@ -130,16 +130,19 @@ Net::MQTT::Message - Perl module to represent MQTT messages
 
 =head1 VERSION
 
-version 1.110400
+version 1.112320
 
 =head1 SYNOPSIS
 
   use Net::MQTT::Constants;
   use Net::MQTT::Message;
+  use IO::Socket::INET;
+  my $socket = IO::Socket::INET->new(PeerAddr => '127.0.0.1:1883');
   my $mqtt = Net::MQTT::Message->new(message_type => MQTT_CONNECT);
   print $socket $mqtt->bytes;
 
-  my $mqtt = Net::MQTT::Message->new_from_bytes($tcp_payload);
+  my $tcp_payload = pack 'H*', '300d000774657374696e6774657374';
+  $mqtt = Net::MQTT::Message->new_from_bytes($tcp_payload);
   print 'Received: ', $mqtt->string, "\n";
 
 =head1 DESCRIPTION

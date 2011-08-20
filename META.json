@@ -4,7 +4,7 @@
       "Mark Hindess <soft-cpan@temporalanomaly.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.102341, CPAN::Meta::Converter version 2.101670",
+   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.101670",
    "license" : [
       "perl_5"
    ],
@@ -41,14 +41,15 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://github.com/beanz/net-mqtt-perl/issues"
+         "web" : "https://github.com/beanz/net-mqtt-perl/issues"
       },
+      "homepage" : "http://search.cpan.org/dist/Net-MQTT/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/beanz/net-mqtt-perl.git",
-         "web" : "http://github.com/beanz/net-mqtt-perl"
+         "web" : "https://github.com/beanz/net-mqtt-perl"
       }
    },
-   "version" : "1.110400"
+   "version" : "1.112320"
 }
 
